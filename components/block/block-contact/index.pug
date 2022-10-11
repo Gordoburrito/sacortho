@@ -10,7 +10,6 @@ section.block-contact(:class="props.background ? 'block-contact--' + props.backg
       .block-contact__content
         h2.block-contact__title(v-html='props.title')
         .block-contact__info
-          pre {{ location }}
           .block-contact__info-left
             p.block-contact__location(v-html='location.title ? location.title : global.company_name' v-if='location.title || global.company_name')
             .block-contact__address

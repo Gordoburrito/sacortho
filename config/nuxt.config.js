@@ -57,6 +57,10 @@ export default async () => {
       {
         src: '~/resources/vendors.client.js',
         mode: 'client'
+      },
+      {
+        src: '~/resources/smilesnap.js',
+        mode: 'client'
       }
     ],
     modules: [
