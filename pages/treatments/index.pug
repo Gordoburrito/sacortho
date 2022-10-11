@@ -1,0 +1,13 @@
+.pages-treatments
+  .pages-tretments__section(v-for='(section, i) in props.sections', :key='`treatment-sections-${i}`', :data-section='section.acf_fc_layout.replace(/_/g, "-")', :class="`pages-treatments__section--${i + 1}`")
+    TheHero(v-if='section.acf_fc_layout === "hero"', :props='section')
+    BlockTextFH(v-else-if='section.acf_fc_layout === "block_text_fh"', :props='section')
+    BlockImageText(v-else-if='section.acf_fc_layout === "image_text"', :props='section')
+    BlockTextSimple(v-if='section.acf_fc_layout === "block_text_simple"', :props='section')  
+    BlockMasonaryGrid(v-else-if='section.acf_fc_layout === "block_masonary_grid"', :props='section')
+    BlockItemRow(v-else-if='section.acf_fc_layout === "multi_item_row"', :props='section')
+    BlockMultiTestimonial(v-else-if='section.acf_fc_layout === "multi_item_testimonial"', :props='section')
+    BlockSingleTestimonial(v-else-if='section.acf_fc_layout === "single_testimonial"', :props='section')
+    BlockSingleImageSlider(v-else-if='section.acf_fc_layout === "single_image_slider"', :props='section')
+    BlockBanner(v-else-if='section.acf_fc_layout === "multi_use_banner"', :props='section')
+    BlockContact(v-else-if='section.acf_fc_layout === "block_contact"', :props='section', :global='global')

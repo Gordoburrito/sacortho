@@ -1,0 +1,70 @@
+.base-modal
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 999
+  width: 100%
+  height: 100%
+
+  &__overlay
+    @extend %absolute
+    opacity: .7
+    background: $secondary
+
+  &__container
+    @include container
+    align-items: center
+    justify-content: center
+    height: 100%
+    
+  &__main
+    @include col(9)
+    position: relative
+    background: $white
+    padding: 0
+    max-height: 90%
+  
+  &__close
+    @include hover-supported
+      background: $primary
+      border-color: $primary
+      &::before, &::after
+        background: $white
+    @include tablet-lg
+      width: 2rem
+      height: 2rem
+    @include phone-lg
+      width: rem-calc(24)
+      height: rem-calc(24)
+    position: absolute
+    top: 1rem
+    right: 1rem
+    transition: background .2s ease, border .2s ease
+    border: rem-calc(2) solid $text
+    background: $white
+    cursor: pointer
+    width: rem-calc(40)
+    height: rem-calc(40)
+
+    &::before, &::after
+      @extend %centered
+      transition: background .2s ease
+      background: $text
+      width: 75%
+      height: rem-calc(2)
+      content: ''
+    
+    &::before
+      transform: translate(-50%, -50%) rotate(45deg)
+    
+    &::after
+      transform: translate(-50%, -50%) rotate(-45deg)
+    
+  &__content
+    @include tablet-lg
+      padding: 2rem 3rem
+    @include phone-lg
+      padding: 1rem 2rem
+    padding: 5.5rem
+    max-height: 100%
+    overflow-y: auto

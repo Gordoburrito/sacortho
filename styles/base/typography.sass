@@ -1,0 +1,112 @@
+%all
+  box-sizing: border-box
+
+%body
+  @include desktop
+    font-size: rem-calc(18)
+  @include phone
+    font-size: rem-calc(14)
+  text-rendering: optimizeLegibility
+  line-height: 1.67
+  letter-spacing: .0225em
+  color: $text
+  font-family: $font
+  font-size: 1rem
+  font-feature-settings: 'lnum'
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+%small-text
+  @include desktop
+    font-size: 1rem
+  @include phone
+    font-size: rem-calc(14)
+  font-size: rem-calc(15)
+
+
+%h1
+  @include desktop
+    font-size: rem-calc(76)
+  @include laptop
+    font-size: rem-calc(60)
+  @include tablet-lg
+    font-size: rem-calc(50)
+  @include nexus
+    font-size: rem-calc(45)
+  @include max-width(360px)
+    font-size: 13vw
+  line-height: 1.15
+  font-family: $font-title
+  font-size: rem-calc(70)
+  font-weight: 800
+
+%h1-alt
+  @include desktop
+    font-size: rem-calc(70)
+  @include laptop
+    font-size: rem-calc(45)
+  @include nexus
+    font-size: 2.2rem
+  line-height: 1.15
+  font-family: $font-title
+  font-size: rem-calc(55)
+  font-weight: 600
+
+%hero-text
+  @include desktop
+    font-size: rem-calc(28)
+  @include laptop
+    font-size: rem-calc(20)
+  @include nexus
+    font-size: rem-calc(18)
+  line-height: 1.42
+  font-size: rem-calc(22)
+
+%h2
+  @include desktop
+    font-size: rem-calc(52)
+  @include tablet-lg
+    font-size: rem-calc(40)
+  @include phone-lg
+    font-size: rem-calc(36)
+  line-height: 1.1
+  font-family: $font-title
+  font-size: rem-calc(46)
+  font-weight: 600
+
+%h3
+  font-size: 30px
+  font-weight: 500
+
+%h4
+  @include desktop
+    font-size: rem-calc(22)
+  @include tablet-lg
+    font-size: rem-calc(19)
+  @include phone-lg
+    font-size: rem-calc(18)
+  line-height: 1.36
+  letter-spacing: .0285em
+  font-size: rem-calc(20)
+  font-weight: 700
+
+%h5
+  font-size: 20px
+
+%h6
+  font-size: 18px
+
+%body-small
+  @include desktop
+    font-size: 1rem
+  @include phone
+    font-size: rem-calc(14)
+  line-height: 1.5
+  font-size: rem-calc(15)
+
+%a
+  text-decoration: none
+  color: $text
+
+%no-margin
+  margin: 0

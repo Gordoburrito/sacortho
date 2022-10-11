@@ -1,0 +1,128 @@
+.block-item-row
+  @extend %section-padding
+  position: relative
+
+  &[data-no-title]
+    @include desktop
+      padding: 6rem 0 8rem
+    @include tablet-lg
+      padding: 2rem 0 4rem
+    @include tablet
+      padding: 1rem 0 3rem
+    padding: 5rem 0 7rem
+
+  &__container
+    @include container
+
+  &__title, &__row, &__button-container
+    @include col (10)
+    @include col--offset (1)
+    @include tablet-lg
+      margin-left: 0
+      width: 100%
+
+  &__title
+    margin-bottom: 1rem
+    text-align: center
+
+    &--large
+      @extend %h1
+      @include desktop
+        margin-bottom: 3rem
+      margin-bottom: 2rem
+
+    &--left
+      text-align: left
+
+    &--primary
+      color: $primary
+
+  &__row
+    @include tablet
+      justify-content: space-around
+    display: flex
+    flex-wrap: wrap
+    align-items: stretch
+    justify-content: space-between
+
+    &--large
+      @include col (12)
+      @include tablet-lg
+        justify-content: space-around
+      margin-left: 0
+
+  &__item
+    margin-top: 2rem
+    text-align: center
+
+    &--left
+      text-align: left
+
+  &__item[data-items='3']
+    @include tablet
+      width: 45%
+    @include phone-lg
+      width: 100%
+    width: 30%
+
+  &__item[data-items='4']
+    @include tablet-md
+      width: 45%
+    @include phone-lg
+      width: 100%
+    width: 22%
+
+  &__item[data-items='5']
+    @include tablet-lg
+      width: 30%
+    @include tablet
+      width: 45%
+    @include phone-lg
+      width: 100%
+    width: 18%
+
+  &__icon
+    @include desktop
+      width: rem-calc(90)
+      height: rem-calc(90)
+    @include tablet-lg
+      width: 4rem
+      height: 4rem
+    display: block
+    margin: 0 auto 1.5rem
+    width: rem-calc(80)
+    height: rem-calc(80)
+
+  &__item-title
+    @extend %h4
+    @include desktop
+      padding-bottom: 1.1rem
+    padding-bottom: 1rem
+
+  &__content
+    @include desktop
+      padding-top: 1.5rem
+    position: relative
+    padding-top: 1.3rem
+
+    &:before
+      @include phone-lg
+        width: 66%
+      position: absolute
+      top: 0
+      left: 50%
+      transform: translateX(-50%)
+      border-top: 1px solid rgba($text, .3)
+      width: 100%
+      content: ''
+
+  &__item-btn
+    margin: 1.5rem auto 0
+
+    .block-item-row__item--left
+      margin-left: auto
+
+  &__button-container
+    display: flex
+    justify-content: center
+    margin-top: 5rem

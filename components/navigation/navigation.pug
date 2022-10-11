@@ -1,0 +1,61 @@
+header.navigation(:class="{ 'navigation--hide': scrollPos > 10 && scrollDir === 'down', 'navigation--floating': !isScrolling && props.nav.floating && !$store.state.noFloatTop, 'navigation--loaded': $store.state.siteLoaded }" ref='theNav')
+  
+  Topbar.navigation__topbar(v-if='props.top_bar.enable_top_bar' :props='props.top_bar')
+
+  .navigation__container
+    
+    .navigation__navbar(ref='navBar')
+      nuxt-link.navigation__home(to='/' @click.native='closeDropdown' aria-label='Home')
+        BaseIcon.navigation__logo(v-show='!isScrolling && props.nav.floating && !$store.state.noFloatTop', name='GLAA-logo--white')
+        BaseIcon.navigation__logo(v-show='isScrolling && props.nav.floating && !$store.state.noFloatTop', name='GLAA-logo--dark')
+      
+      nav.navigation__nav-primary(v-if='windowWidth > 1280')
+        ul.navigation__main-menu
+          li.navigation__menu-item(v-for='(link, i) in links', :key='`link-${i}`')      
+            nuxt-link.navigation__link(:to='link.path' v-html='link.name' v-if='!link.children' @click.native='closeDropdown')
+          
+            button.navigation__link.navigation__link--dropdown(v-else-if='link.children', :aria-expanded="currentDropdown === i ? 'true' : 'false'" @click='toggleDropdown(i, $event)')
+              span(v-html='link.name')
+              BaseIcon.navigation__caret(name='caret', :class="{ 'navigation__caret--active': currentDropdown === i }")
+              
+            .navigation__dropdown(v-if='link.children && currentDropdown === i', :class="{ 'navigation__dropdown--active': currentDropdown === i }" @mouseleave='closeDropdown')
+              ul.navigation__menu-list
+                li.navigation__submenu-item(v-for='(sublink, i) in link.children', :key='`sublink-${i}`')
+                  nuxt-link.navigation__sublink(:to='link.path + sublink.path' v-html='sublink.name' @click.native='closeDropdown' ref='subNavLink')          
+
+    .navigation__nav-secondary(v-if='props.nav.cta_buttons && windowWidth > 1280' ref='navSecondary')
+      .navigation__secondary-cta-container(v-if='props.nav.secondary_cta.path')
+        BaseButtonCta.navigation__secondary-cta(v-if='props.nav.cta_buttons && props.nav.secondary_cta.button_type', :props='props.nav.secondary_cta')  
+      .navigation__primary-cta-container
+        BaseButtonCta.navigation__primary-cta(v-if='props.nav.cta_buttons', :props='props.nav.primary_cta')
+        //- nuxt-link.navigation__primary-cta(v-if='!props.nav.primary_cta.ext_link' v-html='props.nav.primary_cta.label', :to='props.nav.primary_cta.path + (props.nav.primary_cta.hash ? props.nav.primary_cta.hash : "")')              
+        //- a.navigation__primary-cta(v-else-if='props.nav.primary_cta.ext_link' href='props.nav.primary_cta.path' v-html='props.nav.primary_cta.label' target='_blank' rel='noopener')
+        //- button.navigation__primary-cta.openchair-widget(v-else-if="!props.nav.primary_cta.ext_link && props.nav.primary_cta.open_chair" v-html='props.nav.primary_cta.label' tabindex='0' aria-label='Open scheduling calendar')
+
+    nav.navigation__mobile(v-if='windowWidth <= 1280')
+      button.navigation__hamburger(aria-haspopup='true' tabindex='0' ref='hamburger' aria-label='Open main menu' @click='openDrawer')
+        span(v-for='(span, i) in 3', :key='`hamburger-span-${i}`')
+            
+  transition(name='fade')
+    .navigation__overlay(v-if='drawerOpen && windowWidth <= 1280') 
+    
+  .navigation__drawer(v-if='windowWidth <= 1280', :class="{ 'navigation__drawer--active': drawerOpen }")
+    transition(name='fade-delay')
+      .navigation__drawer-container(ref='drawer' v-if='drawerOpen')
+        .navigation__header
+          nuxt-link.navigation__home--mobile(to='/' @click.native='closeDrawer' aria-label='Home')
+            BaseIcon.navigation__logo.navigation__logo--mobile(name='GLAA-logo--white')
+          button.navigation__drawer-close(@click='closeDrawer' tabindex='0') Close
+        .navigation__content-container
+          ul.navigation__drawer-main-menu
+            li.navigation__drawer-menu-item(v-for='(link, i) in mobileLinks', :key='`mobile-link-${i}`')          
+              nuxt-link.navigation__mobile-link(:to='link.path' v-html='link.name' v-if='!link.children' @click.native='closeDrawer')
+                
+              button.navigation__mobile-link.navigation__mobile-link--button(v-else-if='link.children', :aria-expanded="currentDropdown === i ? 'true' : 'false'" @click='toggleDropdown(i, $event)')
+                span(v-html='link.name')
+                BaseIcon.navigation__mobile-caret(name='caret', :class="{ 'navigation__mobile-caret--active': currentDropdown === i}")
+                
+              .navigation__mobile-dropdown(v-if='link.children && currentDropdown === i', :class="{ 'navigation__mobile-dropdown--active': currentDropdown === i }")
+                ul.navigation__drawer-menu-list
+                  li.navigation__mobile-submenu-item(v-for='(sublink, i) in link.children', :key='`mobile-sublink-${i}`')
+                    nuxt-link.navigation__mobile-sublink(:to='link.path + sublink.path' v-html='sublink.name' @click.native='closeDrawer')      

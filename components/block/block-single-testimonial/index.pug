@@ -1,0 +1,7 @@
+.block-single-testimonial(:class="props.background ? 'block-single-testimonial--' + props.background : null", :data-texture='props.add_texture')
+  BaseTexture(v-if='props.add_texture')
+  .block-single-testimonial__gradient(v-if='props.linear_gradient', :style="{ background: props.linear_gradient }")
+  .block-single-testimonial__container
+    .block-single-testimonial__content
+      p.block-single-testimonial__testimonial(v-html='props.testimonial')
+      p.block-single-testimonial__author(v-html='props.author' v-if='props.author')  

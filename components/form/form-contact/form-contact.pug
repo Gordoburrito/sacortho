@@ -1,0 +1,65 @@
+.form-contact
+  form.form-contact__form(@submit.prevent='validate')
+    
+    .form-contact__group
+      input.form-contact__input(name='fullname', v-model='fullname', id='fullname' v-validate="'required'", :class="{ 'form-contact__input--error': errors.has('fullname') }", type='text' autocomplete='name', :aria-invalid="errors.has('firstName') ? true : false")
+      label.form-contact__label(:class="{ 'form-contact__label--active': fullname }" for='fullname') Full Name #[sup *]
+      .form-contact__error-message(v-show="errors.has('fullname')") Your name is required.
+  
+    .form-contact__group
+      input.form-contact__input(name='clientEmail', v-model='clientEmail', id='email' v-validate="'required|email'", :class="{ 'form-contact__input--error': errors.has('clientEmail') }" type='email' autocomplete='email', :aria-invalid="errors.has('clientEmail') ? true : false")
+      label.form-contact__label(:class="{ 'form-contact__label--active': clientEmail }" for='email') Email #[sup *]
+      .form-contact__error-message(v-show="errors.has('clientEmail')")  A valid email address is required.
+  
+    .form-contact__group
+      input.form-contact__input(name='clientPhone', v-model='clientPhone', id='clientPhone' type='tel' autocomplete='tel')
+      label.form-contact__label(:class="{ 'form-contact__label--active': clientPhone }" for='clientPhone') Phone
+          
+    fieldset.form-contact__group.form-contact__group--fieldset
+      legend.form-contact__checkbox-title Preferred Method of Communication
+      .form-contact__checkbox--alt
+        .form-contact__checkbox-group.form-contact__checkbox-group--alt
+          input.form-contact__checkbox-input(
+            name='email'
+            id='checkboxEmail'
+            v-model='preferredCommunication'
+            value='email'
+            type='checkbox')
+          span.form-contact__checkbox-overlay
+          label(for='checkboxEmail').form-contact__checkbox-label Email
+        .form-contact__checkbox-group.form-contact__checkbox-group--alt
+          input.form-contact__checkbox-input(
+            name='call'
+            id='checkboxCall'
+            v-model='preferredCommunication'
+            value='call'
+            type='checkbox')
+          span.form-contact__checkbox-overlay
+          label(for='checkboxCall').form-contact__checkbox-label Call
+        .form-contact__checkbox-group.form-contact__checkbox-group--alt  
+          input.form-contact__checkbox-input(
+            name='text'
+            id='checkboxText'
+            v-model='preferredCommunication'
+            value='text'
+            type='checkbox')
+          span.form-contact__checkbox-overlay
+          label(for='checkboxText').form-contact__checkbox-label Text      
+  
+    .form-contact__group
+      textarea.form-contact__input.form-contact__input--textarea(name='clientMessage', v-model='clientMessage' id='clientMessage' rows='5')
+      label.form-contact__label.form-contact__label--textarea(:class="{ 'form-contact__label--active': clientMessage }" for='clientMessage') Message
+      .form-contact__error-message(v-show="errors.has('clientMessage')")  Please fill out your message
+  
+    .form-contact__group.form-contact__group--button
+      button.form-contact__submit-button(:class="{ 'form-contact__submit-button--success': formSuccess, 'form-contact__submit-button--sending': formSubmitted && !formSuccess }")
+        span.form-contact__submit-label(:class="{ 'form-contact__submit-label--hidden': formSuccess }") Submit
+        span.form-contact__submit-check(:class="{ 'form-contact__submit-check--showing': formSuccess }" aria-hidden='true') &#10003
+  
+  .form-contact__modal(:class="{ 'form-contact__modal--open': modalOpen }", :aria-hidden='modalOpen ? false : true' role='dialog' aria-modal='true')
+    .form-contact__modal-overlay
+    .form-contact__modal-container(ref='contactFormModal')
+      button.form-contact__modal-close(@click='closeModal()' tabindex='0') close
+      .form-contact__modal-title Thank you! 
+      .form-contact__modal-text We will be in touch shortly!
+      slot

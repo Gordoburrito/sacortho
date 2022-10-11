@@ -1,0 +1,53 @@
+.custom-home-banner
+  @include tablet
+    padding: 2rem 0
+  display: flex
+  background: $primary
+  padding: 3rem 0
+  min-height: 20vh
+
+  &__container
+    @include container
+
+  &__col
+    @include tablet
+      padding: 0 12px
+    @include phone-lg
+      flex-wrap: wrap
+      justify-content: center
+    @include col(12)
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 2rem
+    padding: 0
+
+  &__item
+    @include phone-lg
+      width: 40%
+      margin: .5rem 0
+    display: flex
+    align-items: center
+    justify-content: center
+    width: fit-content
+
+  &__icon
+    display: flex
+    width: 100%
+    height: 100%
+    max-height: 5rem
+
+    & svg
+      width: 100%
+      height: 100%
+      max-height: 5rem
+      path,
+      polygon,
+      g
+        fill: $white
+
+  &__image
+    display: flex
+    width: 100%
+    height: 100%
+    max-height: 5rem

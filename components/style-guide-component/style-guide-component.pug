@@ -1,0 +1,43 @@
+.style-guide-component
+  
+  .style-guide-component__divider
+    h1 Form
+    p(style='max-width: 720px; margin: 0 auto;') This is the standard form. The thank you modal has a slot for adding New Patient forms if a user checks they're a first time patient. Check out this pug file to see how the content is slotted in.
+  .style-guide-component__container
+    .style-guide-component__col.style-guide-component__col-form
+      FormContact
+        .form-contact__modal-body Prior to your first visit to our office please fill out the below new patient forms.
+        a.form-contact__modal-button(href='') health history forms
+  
+  .style-guide-component__divider
+    h1 Images
+    h3 See style-guide-component component in components for reference.
+  .style-guide-component__container
+    .style-guide-component__col-images
+      | This is the 'BaseBackground' component, it can be passed a prop (':bgColor') to change the background color. The prop takes a string of the hex-code of the color. Its default styling is set to bg position, center and bg size as cover.
+      BaseBackground.style-guide-component__background-image(:bgColor='"#fff"', :src='"https://d3qms0w8ok8dkp.cloudfront.net/photo_1.jpg"')
+    .style-guide-component__col-images
+      | This is the 'BaseImage' component with the 'imageBackground' prop in it's default, 'false', which sets an object-fit to contain so it will behave like an img tag.
+      BaseImage.style-guide-component__image(:bgColor='"#fff"', :src='"https://d3qms0w8ok8dkp.cloudfront.net/photo_1.jpg"' addLoader)
+    .style-guide-component__col-images
+      | This is the 'BaseImage' component with the 'imageBackground' prop toggled true and the object-fit is set to cover so it will behave like a background image on a div.
+      .style-guide-component__image-container
+        BaseImage.style-guide-component__image.style-guide-component__image-background(:bgColor='"#fff"', imageBackground :src='"https://d3qms0w8ok8dkp.cloudfront.net/photo_1.jpg"', :objectPosition="'right center'")
+  
+  .style-guide-component__divider
+    h1 Grid
+    h4 The grid is not intended to be nested, it is a simple sass grid
+  .style-guide-component__container
+    .style-guide-component__col.style-guide-component__col-1
+      .style-guide-component__col-example .col-5<br>.col-8--tablet
+    .style-guide-component__col.style-guide-component__col-2
+      .style-guide-component__col-example .col-2<br>.col-4--tablet
+    .style-guide-component__col.style-guide-component__col-3
+      .style-guide-component__col-example .col-3<br>.col-2--offset
+  .style-guide-component__container-lg
+    .style-guide-component__col.style-guide-component__col-4
+      .style-guide-component__col-example .col-4<br>.col-6--tablet
+    .style-guide-component__col.style-guide-component__col-5
+      .style-guide-component__col-example .col-3<br>.col-1--offset<br>.col-6--tablet
+    .style-guide-component__col.style-guide-component__col-6
+      .style-guide-component__col-example .col-4

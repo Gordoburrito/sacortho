@@ -1,0 +1,347 @@
+.navigation
+  @extend %fixed
+  transition: background .2s ease, transform .2s ease, opacity .2s ease-in .3s, box-shadow .2s ease
+  opacity: 0
+  z-index: 99
+  box-shadow: $bs2
+  background: $white
+
+  &--floating
+    box-shadow: none
+    background: none
+
+  &--loaded
+    opacity: 1
+
+  &--hide
+    transform: translateY(-105%)
+
+  &__container
+    @include container--large
+    @include tablet
+      padding-top: rem-calc(10)
+      padding-bottom: rem-calc(10)
+    align-items: center
+    justify-content: space-between
+    padding-top: 1rem
+    padding-bottom: 1rem
+
+  &__navbar
+    display: flex
+    align-items: center
+
+  &__home
+    @include focus
+    @include desktop
+      width: rem-calc(200)
+      height: rem-calc(50)
+    @include phone
+      width: 55vw
+      height: calc(55vw * .25)
+    margin-right: 5vw
+    width: rem-calc(180)
+    height: rem-calc(45)
+
+  &__logo
+    display: inline-block
+    width: 100%
+    height: 100%
+    .logo-letter
+      transition: fill .2s ease
+      fill: $primary
+    .logo-tooth
+      fill: rgba($primary,  .5)
+    .logo-swoop
+      transition: fill .2s ease
+      fill: $primary
+
+    .navigation--floating &, .navigation__home--mobile &
+      .logo-letter, .logo-tooth
+        fill: $white
+      .logo-swoop
+        opacity: .12
+        fill: $text
+
+    &--mobile
+      @include phone-lg
+        margin-left: 1rem
+      @include phone
+        width: 50vw
+        height: calc(50vw * .25)
+      margin-left: 2rem
+      width: rem-calc(180)
+      height: rem-calc(45)
+
+  &__main-menu, &__menu-list
+    margin: 0
+    padding: 0
+
+  &__main-menu
+    display: flex
+
+  &__menu-item
+    position: relative
+    height: 100%
+    list-style: none
+    &:not(:last-child)
+      margin-right: 3vw
+
+  &__mobile-link
+    &.nuxt-link-exact-active,
+    &--focus
+      text-decoration: underline
+      &:after
+        transform: translateY(0)
+        opacity: 1
+        
+  &__link
+    @include hover-supported
+      &:after
+        transform: translateY(0)
+        transition: opacity .2s ease, transform .2s ease
+        opacity: 1
+    @include focus
+      outline: none
+      &:after
+        transform: translateY(0)
+        opacity: 1
+    @include desktop
+      font-size: rem-calc(17)
+    display: block
+    transition: color .2s ease
+    overflow: hidden
+    letter-spacing: .0325em
+    font-size: 1rem
+    font-weight: 600
+
+    &--dropdown
+      display: flex
+      align-items: center
+      cursor: pointer
+      line-height: 1.67
+
+    .navigation--floating &
+      color: $white
+
+    &:after
+      position: absolute
+      bottom: -.25rem
+      left: 0
+      transform: translateY(.25rem)
+      transition: opacity .2s ease, transform .2s ease
+      opacity: 0
+      background: $text
+      width: 100%
+      height: rem-calc(2)
+      content: ''
+
+      .navigation--floating &
+        background: $white
+
+    &.nuxt-link-exact-active,
+    &--focus
+      &:after
+        transform: translateY(0)
+        opacity: 1
+
+  &__caret
+    transition: transform .25s ease
+    margin-left: .5rem
+    width: 1rem
+    height: 1rem
+    line-height: 1.1
+    stroke: $text
+    stroke-width: .45rem
+
+    &--active
+      transform: scaleY(-1)
+
+    .navigation--floating &
+      stroke: $white
+
+  &__dropdown
+    position: absolute
+    top: calc(100% + 1rem)
+    left: 0
+    transform: translateY(1rem)
+    transition: opacity .2s ease, transform .2s ease
+    opacity: 0
+    box-shadow: $bs1
+    background: $white
+    padding: .9rem 1.75rem
+    width: max-content
+
+    &--active
+      transform: translateY(0)
+      opacity: 1
+
+  &__submenu-item
+    list-style: none
+    &:not(:last-child)
+      border-bottom: 1px solid rgba($text, .2)
+
+  &__sublink
+    @include hover-supported
+      background: rgba($text, .1)
+    @include focus
+      background: rgba($text, .1)
+    @include desktop
+      font-size: 1rem
+    display: block
+    transition: background .2s ease
+    padding: .6rem 1rem .6rem .75rem
+    font-size: rem-calc(15)
+    font-weight: 600
+
+  &__hamburger
+    @include focus
+
+    cursor: pointer
+    padding: .5rem
+    width: rem-calc(50)
+    height: rem-calc(50)
+
+    span
+      display: block
+      transition: background .2s ease, transform .2s ease
+      background: $text
+      width: 100%
+      height: rem-calc(3)
+      &:not(:last-child)
+        margin-bottom: rem-calc(6)
+
+      .navigation--floating &
+        background: $white
+
+    @include hover-supported
+      span
+        background: darken($bg-2, 10%)
+        &:first-child
+          transform: translateY(-3px)
+        &:last-child
+          transform: translateY(3px)
+
+  &__overlay
+    @extend %fixed
+    background: rgba($black, .4)
+    height: 100vh
+
+  &__drawer
+    position: fixed
+    top: 0
+    right: 0
+    transform: translateX(100%)
+    transition: transform .225s cubic-bezier(.65, .025, .67, .36)
+    z-index: 3
+    background: $white
+    width: 100%
+    max-width: #{$screen-phone-lg}
+    height: 100vh
+
+    &--active
+      transform: translateX(0)
+      transition: transform .365s cubic-bezier(.34, .615, .4, .985)
+
+  &__drawer-container
+    height: 100%
+
+  &__header
+    @extend %fixed
+    display: flex
+    align-items: center
+    justify-content: space-between
+    z-index: 2
+    background: $secondary
+
+  &__drawer-close
+    @include hover-supported
+      background: $secondary
+      color: $white
+    display: block
+    transition: background .2s ease, color .2s ease
+    border: 1px solid rgba($text, .2)
+    background: $white
+    cursor: pointer
+    padding: 2rem
+    letter-spacing: .035em
+    color: $text
+    font-weight: 600
+
+  &__content-container
+    background: $bg-1
+    padding-top: rem-calc(85)
+    height: inherit
+    overflow: scroll
+
+  &__drawer-main-menu
+    @include phone
+      padding: 3vh 0
+    margin: 0
+    border-bottom: 1px solid rgba($text, .2)
+    padding: 0
+
+  &__drawer-menu-item
+    @include hover-supported
+      background: rgba($text, .2)
+    list-style: none
+    &:not(:last-child)
+      border-bottom: 1px solid rgba($text, .2)
+
+  &__mobile-link
+    @include phone-land-lg
+      padding: 0.5rem 1rem
+    display: flex
+    padding: 1.5rem 2rem
+    width: 100%
+    font-size: rem-calc(20)
+    font-weight: 600
+
+    &--button
+      display: flex
+      align-items: center
+      justify-content: space-between
+
+  &__mobile-caret
+    transition: transform .25s ease
+    width: rem-calc(20)
+    height: rem-calc(20)
+    stroke: $text
+    stroke-width: .5rem
+
+    &--active
+      transform: scaleY(-1)
+
+  &__mobile-dropdown
+    background: $bg-2
+    padding: 1rem 0
+    height: inherit
+
+  &__drawer-menu-list
+    // margin: 0
+    padding-left: 3rem
+
+  &__mobile-submenu-item
+    list-style: none
+    &:not(:last-child)
+      padding-bottom: 1rem
+
+  &__mobile-sublink
+    @include hover-supported
+      &:after
+        transform: translateY(0)
+        visibility: visible
+        opacity: 1
+    position: relative
+
+    &:after
+      position: absolute
+      bottom: -.25rem
+      left: 0
+      transform: translateY(.25rem)
+      transition: opacity .2s ease, transform .2s ease
+      visibility: hidden
+      opacity: 0
+      background: $text
+      width: 100%
+      height: rem-calc(1)
+      content: ''

@@ -1,0 +1,107 @@
+.topbar
+
+  &__bar
+    padding: .5rem 0
+    width: 100%
+    font-size: 1rem
+
+    &--light
+      background: $topbar-light
+
+      &.topbar__bar--announcement
+        @include hover-supported
+          background: darken($topbar-light, 10%)
+        transition: background .2s ease
+        cursor: pointer
+    
+    &--dark
+      background: $topbar-dark
+      color: $white
+    
+    &.topbar__bar--announcement
+        @include hover-supported
+          background: darken($topbar-dark, 10%)
+        transition: background .2s ease
+        cursor: pointer
+  
+  &__container
+    @include container--large
+
+    &--right
+      justify-content: flex-end
+    
+    &--center
+      justify-content: center
+    
+  &__links
+    display: flex
+    
+  &__link
+    @include focus
+    @include hover-supported
+      .topbar__link-text
+        color: $accent
+        .topbar--dark &
+          color: $text
+      .topbar__link-icon svg
+        fill: $accent
+        .topbar--dark &
+          fill: $text
+    display: flex
+    align-items: center
+
+    &:not(:last-of-type)
+      margin-right: rem-calc(24)
+
+    &-icon
+      @include tablet-lg
+        width: rem-calc(22)
+        height: rem-calc(22)
+      display: flex
+      justify-content: center
+      margin-right: rem-calc(3)
+      width: rem-calc(18)
+      height: rem-calc(18)
+
+      svg
+        transition: fill .2s ease
+        fill: $text
+
+        .topbar--dark &
+          fill: $white
+  
+    &-text
+      @include tablet-lg
+        display: none
+      transition: color .2s ease
+
+      .topbar--dark &
+        color: $white
+
+  &__announcement
+    display: flex
+    align-items: center
+
+    &-icon
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-right: rem-calc(8)
+      width: rem-calc(18)
+      height: rem-calc(18)
+
+      svg
+        fill: $white
+
+    &-text
+      font-weight: 600
+
+  &__modal
+    &-title
+      margin-bottom: 2rem
+      color: $primary
+    
+    &-text
+
+      p:not(:last-of-type)
+        margin-bottom: 1rem

@@ -1,0 +1,118 @@
+.block-grid
+  @extend %section-padding
+  position: relative
+
+  &--bg1
+    background: $bg-1
+
+  &--bg2
+    background: $bg-2
+
+  &__container
+    @include container
+
+  &__title, &__grid
+    @include tablet-lg
+      margin-left: 0
+      width: 100%
+    @include col (10)
+    @include col--offset (1)
+
+  &__title
+    margin-bottom: 3rem
+
+    &--large
+      @extend %h1
+      @include tablet-md
+        margin-bottom: 3rem
+      margin-bottom: 4rem
+
+    &--centered
+      text-align: center
+
+  &__grid
+    @include desktop
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+    @include nexus
+      display: flex
+      flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr))
+    grid-gap: 2rem
+
+  &__item
+    @include desktop
+      height: rem-calc(374)
+    @include nexus
+      width: 100vw
+      max-width: rem-calc(450)
+      height: rem-calc(374)
+    position: relative
+    height: rem-calc(322)
+    overflow: hidden
+    // aspect-ratio: 1/0.965
+
+  &__image
+    @extend %absolute
+    transition: transform .5s cubic-bezier(0, 0, 0.2, 1)
+
+    .block-grid__item--hover &
+      transform: scale(1.1)
+
+  &__content
+    @include desktop
+      transform: translateY(79%)
+    @include tablet-lg
+      padding: 1rem
+    @include nexus
+      transform: translateY(80%)
+    transform: translateY(78%)
+    transition: transform .325s cubic-bezier(.34, .615, .4, .985), background .3s ease
+    z-index: 2
+    background: rgba($secondary, .7)
+    padding: 1rem 2rem
+    width: 100%
+    height: 100%
+
+    .block-grid__item--hover &
+      background: rgba($secondary, .9)
+
+    &--active
+      transform: translateY(0)
+      background: rgba($secondary, .9)
+
+  &__header
+    display: block
+    margin-bottom: 1rem
+    width: 100%
+    text-align: left
+    line-height: 1
+    color: $white
+
+    &:focus
+      outline: none
+
+    .block-grid__content--bio &
+      cursor: pointer
+
+  &__name
+    margin-bottom: .5rem
+    font-weight: 700
+
+  &__bio-container
+    position: relative
+    height: 90%
+    overflow: hidden
+
+  &__bio
+    transform: translateY(2.5rem)
+    transition: opacity .15s ease, transform 0s ease .2s
+    opacity: 0
+    height: inherit
+    overflow: scroll
+    color: $white
+
+    .block-grid__content--active &
+      transform: translateY(0)
+      transition: opacity .3s ease .175s, transform .35s cubic-bezier(.34, .615, .4, .985) .175s
+      opacity: 1

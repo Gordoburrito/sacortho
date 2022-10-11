@@ -1,0 +1,25 @@
+.block-contact-form
+  .block-contact-form__container
+    .block-contact-form__content
+      h2.block-contact-form__title(v-html='props.title')
+      .block-contact-form__text(v-if='props.text' v-html='props.text')  
+      .block-contact__info
+          .block-contact-form__wrapper
+            h4.block-contact-form__hours-title--form Contact:
+            a.block-contact__phone(:href='global.phone.href' v-if='global.phone.href', :aria-label='`Call us at ${phoneAria}`')
+              BaseIcon.block-contact__icon(name='phone')
+              span.block-contact__label(v-html='global.phone.number')
+            a.block-contact__email(:href='`mailto:${global.email}`')
+              BaseIcon.block-contact__icon(name='envelope')
+              span.block-contact__label(v-html='global.email')
+          .block-contact__hours-container(v-if='location.hours')
+            h4.block-contact-form__hours-title--form Hours:
+            ul.block-contact__hours-list
+              li.block-contact__row(v-for='(item, i) in location.hours', :key='`contact-hours-${i}`')
+                p.block-contact__day(v-html='item.day')
+                p.block-contact__hours(v-html='item.time')
+          .block-contact__special-note(v-if='location.special_note', :data-bg-alt='props.background')
+            p.block-contact__note-text(v-html='location.special_note')
+
+    .block-contact-form__form-container
+      FormContact.block-contact-form__form  

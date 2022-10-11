@@ -1,0 +1,8 @@
+.custom-home-banner
+  .custom-home-banner__container
+    .custom-home-banner__col
+      .custom-home-banner__item(
+        v-for='(logo, i) in content.logos'
+        :key='"logo-" + i')
+        BaseIcon.custom-home-banner__icon(v-if='logo.format === "svg"' :name='logo.icon' :alt='logo.alt')
+        img.custom-home-banner__image(v-else-if='logo.format === "link"' :src='logo.icon' :alt='logo.alt')

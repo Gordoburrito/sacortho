@@ -1,0 +1,19 @@
+@mixin hover-supported
+  @media not all and (pointer: coarse)
+    &:hover
+      @content
+
+@mixin ie11-support
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    @content
+
+@mixin focus ($offset: rem-calc(2), $width: rem-calc(1), $style: dashed, $color: $secondary)
+  &:focus-visible
+    outline-offset: $offset
+    outline-width: $width
+    outline-style: $style
+    outline-color: $color
+    @content
+
+  &:active
+    outline: none    
