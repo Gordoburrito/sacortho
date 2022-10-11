@@ -18,9 +18,8 @@ footer.footer(:class="{ 'footer--light': props.footer.light, 'footer--border-top
           .footer__item(v-for='(link, i) in props.footer.addl_links', :key='`footer-addl-link-${i}`')
             nuxt-link.footer__link(v-if='!link.ext_link', :to='link.path + (link.hash ? link.hash : "")' v-html='link.label' @click.native='$_removeFocus')  
             a.footer__link(v-else-if='link.ext_link' href='link.path' v-html='link.label' target='_blank' rel='noopener' @click='$_removeFocus')
-    
-    .footer__social-media(v-if="props.footer.social_media")
-      ul.footer__social-links
-        li.footer__social-item(v-for='(social, i) in props.footer.social_media', :key='`social-link-${i}`')
-          a.footer__social-link(:href='social.href' target='_blank', :aria-label='`Follow us on ${social.icon}`' @click='$_removeFocus')
-            BaseIcon.footer__social-icon(:name='social.icon')                        
+      .footer__social-media(v-if="props.footer.social_media")
+        ul.footer__social-links
+          li.footer__social-item(v-for='(social, i) in props.footer.social_media', :key='`social-link-${i}`')
+            a.footer__social-link(:href='social.href' target='_blank', :aria-label='`Follow us on ${social.icon}`' @click='$_removeFocus')
+              BaseIcon.footer__social-icon(:name='social.icon')                        
