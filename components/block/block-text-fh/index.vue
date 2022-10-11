@@ -35,7 +35,7 @@ export default {
   methods: {
     setContainerHeight () {
       if (this.windowWidth > 1024) {
-        this.contentHeight = ((this.$refs.fhContent.clientHeight + 100) / 16) + 'rem'
+        this.contentHeight = ((this.$refs.fhContent.clientHeight + 32) / 16) + 'rem'
       } else {
         this.contentHeight = ((this.$refs.fhContent.clientHeight + 32) / 16) + 'rem'
       }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default ({ app }) => {
   window.__smilesnap = window.__smilesnap || [];
   window.__smilesnap.cid = 'VKRspToSdJPsybWkuxjmCtiE';

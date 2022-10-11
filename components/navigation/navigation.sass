@@ -43,18 +43,8 @@
     height: rem-calc(45)
 
   &__logo
-    display: inline-block
-    width: 100%
-    height: 100%
-    .logo-letter
-      transition: fill .2s ease
-      fill: $primary
-    .logo-tooth
-      fill: rgba($primary,  .5)
-    .logo-swoop
-      transition: fill .2s ease
-      fill: $primary
-
+    svg 
+      height: 3rem
     .navigation--floating &, .navigation__home--mobile &
       .logo-letter, .logo-tooth
         fill: $white
@@ -251,7 +241,7 @@
     align-items: center
     justify-content: space-between
     z-index: 2
-    background: $secondary
+    background: $bg-2
 
   &__drawer-close
     @include hover-supported

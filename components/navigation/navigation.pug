@@ -6,8 +6,8 @@ header.navigation(:class="{ 'navigation--hide': scrollPos > 10 && scrollDir === 
     
     .navigation__navbar(ref='navBar')
       nuxt-link.navigation__home(to='/' @click.native='closeDropdown' aria-label='Home')
-        BaseIcon.navigation__logo(v-show='!isScrolling && props.nav.floating && !$store.state.noFloatTop', name='GLAA-logo--white')
-        BaseIcon.navigation__logo(v-show='isScrolling && props.nav.floating && !$store.state.noFloatTop', name='GLAA-logo--dark')
+        BaseIcon.navigation__logo(v-show='!isScrolling && props.nav.floating && !$store.state.noFloatTop', name='logo')
+        BaseIcon.navigation__logo(v-show='isScrolling && props.nav.floating && !$store.state.noFloatTop', name='logo')
       
       nav.navigation__nav-primary(v-if='windowWidth > 1280')
         ul.navigation__main-menu
@@ -44,7 +44,7 @@ header.navigation(:class="{ 'navigation--hide': scrollPos > 10 && scrollDir === 
       .navigation__drawer-container(ref='drawer' v-if='drawerOpen')
         .navigation__header
           nuxt-link.navigation__home--mobile(to='/' @click.native='closeDrawer' aria-label='Home')
-            BaseIcon.navigation__logo.navigation__logo--mobile(name='GLAA-logo--white')
+            BaseIcon.navigation__logo.navigation__logo--mobile(name='logo')
           button.navigation__drawer-close(@click='closeDrawer' tabindex='0') Close
         .navigation__content-container
           ul.navigation__drawer-main-menu

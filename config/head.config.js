@@ -24,19 +24,19 @@ export const siteHead = (meta) => {
       { hid: 'canonical', rel: 'canonical', href: url }
     ],
     script: [
-      {
-        src: 'https://onlineschedulingv2.threadcommunication.com',
-        body: true
-      },
-      {
-        hid: 'openChair',
-        type: 'text/javascript',
-        body: true,
-        innerHTML: `OpenChair.init({ token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJodHRwczovL3NhY29ydGhvLmNvbS8iLCJwcmFjdGljZV9pZCI6Ijg0OCJ9.K5Y0Gf4Gp7HAkU-a6DTfmoYlmioSQXkVfPGk-bTFX0o", })`
-      }
+      // {
+      //   src: 'https://onlineschedulingv2.threadcommunication.com',
+      //   body: true
+      // },
+      // {
+      //   hid: 'openChair',
+      //   type: 'text/javascript',
+      //   body: true,
+      //   innerHTML: `OpenChair.init({ token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmlnaW4iOiJodHRwczovL3NhY29ydGhvLmNvbS8iLCJwcmFjdGljZV9pZCI6Ijg0OCJ9.K5Y0Gf4Gp7HAkU-a6DTfmoYlmioSQXkVfPGk-bTFX0o", })`
+      // }
     ],
-    __dangerouslyDisableSanitizersByTagID: {
-      openChair: ['innerHTML']
-    }
+    // __dangerouslyDisableSanitizersByTagID: {
+    //   openChair: ['innerHTML']
+    // }
   }
 }
