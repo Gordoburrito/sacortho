@@ -15,7 +15,7 @@ import BlockSingleImageSlider from '~/components/block/block-single-image-slider
 import BlockTextFH from '~/components/block/block-text-fh'
 import BlockTextSimple from '~/components/block/block-text-simple'
 import TheHero from '~/components/hero/hero-main'
-import CustomHomeBanner from '~/components/custom/custom-home-banner/custom-home-banner.vue'
+import CustomBook from '~/components/custom/custom-book'
 
 export default {
   components: {
@@ -31,7 +31,7 @@ export default {
     BlockTextFH,
     BlockTextSimple,
     TheHero,
-    CustomHomeBanner
+    CustomBook
   },
   async asyncData () {
     const props = await setData('home')
