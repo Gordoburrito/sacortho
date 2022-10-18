@@ -6,6 +6,7 @@ import { setData, setMeta } from '~/resources/utils'
 import BlockBanner from '~/components/block/block-banner'
 import BlockContact from '~/components/block/block-contact'
 import BlockImageText from '~/components/block/block-image-text'
+import BlockImageAccordion from '~/components/block/block-image-accordion'
 import BlockItemRow from '~/components/block/block-item-row'
 import BlockMasonaryGrid from '~/components/block/block-masonary-grid'
 import BlockMultiTestimonial from '~/components/block/block-multi-testimonial'
@@ -20,6 +21,7 @@ export default {
     BlockBanner,
     BlockContact,
     BlockImageText,
+    BlockImageAccordion,
     BlockItemRow,
     BlockMasonaryGrid,
     BlockSingleTestimonial,

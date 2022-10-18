@@ -1,0 +1,28 @@
+section.block-accordion-small(:id='props.hash ? props.hash : null')
+  .block-accordion-small__container(v-waypoint='{ active: true, callback: onWaypoint, options: intersectionOptions }')
+    //- h2.block-accordion-small__title(v-if='props.title' v-html='props.title')
+    //- p.block-accordion-small__body(v-if='props.body' v-html='props.body')
+    .block-accordion-small__accordion
+      .block-accordion-small__row(v-for='row, i in props.paragraphs'
+        :key='"row" + i'
+        :class='{ "block-accordion-small__row--active" : i === active }'
+        @click='i !== active ? toggleSection(i) : null'
+        @keyup.enter='i !== active ? toggleSection(i) : null'
+        :aria-label='`open accordion row ${i + 1}`'
+        tabindex='0')
+        .block-accordion-small__top
+          h3.block-accordion-small__row-title(v-html='row.heading')
+          BaseIcon.block-accordion-small__caret(name='caret')   
+          //- .block-accordion-small__button
+          //-   span
+          //-   span
+        .block-accordion-small__bottom
+          .block-accordion-small__media(v-if='row.has_media' :class='{ "block-accordion-small__media--full": row.media_type === "video" || row.image.size === "large" }')
+            .block-accordion-small__video(v-if='row.media_type === "video"')
+              button.block-accordion-small__video-init(v-if='!videoActive' @click='playVideo(row.video.src)')
+                BaseImage.block-accordion-small__video-thumbnail(:src='row.video.thumbnail.src' :webp='row.video.thumbnail.webp' imageBackground :bgColor='"#fff"' :alt='`image for ${row.video.title}`')
+                .block-accordion-small__video-overlay
+                BaseIcon.block-accordion-small__video-play(name='play')
+              iframe.block-accordion-small__video-iframe(v-else='videoActive && i === active' :src="`${videoActive}?&autoplay=1&rel=0`" :title='row.video.title' frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; autoplay; gyroscope; picture-in-picture" allowfullscreen)       
+            BaseImage.block-accordion-small__image(v-if='row.media_type === "image"' :src='row.image.src', :webp='row.image.webp', alt='row.image.alt')
+          .block-accordion-small__text(v-html='row.text' :class='{ "block-accordion-small__text--small": row.media_type === "image" && row.image.size === "small" }')
