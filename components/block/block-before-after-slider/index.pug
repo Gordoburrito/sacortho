@@ -1,0 +1,27 @@
+.block-before-after-slider(:class="props.background ? 'block-before-after-slider--' + props.background : null", :data-texture='props.add_texture', :style="{ '--siSliderTextColor': props.primary_color ? '#1c79a0' : '#272727'}")
+  BaseTexture(v-if='props.add_texture')
+  .block-before-after-slider__gradient(v-if='props.linear_gradient', :style="{ background: props.linear_gradient }")  
+  .block-before-after-slider__container
+    .block-before-after-slider__row
+      h2.block-before-after-slider__title(v-html='props.title')
+      .block-before-after-slider__pagination {{ currIndex + 1 }} / {{ props.slides.length }}
+    .block-before-after-slider__carousel(:aria-label='`${props.carousel_aria}`')
+      button.block-before-after-slider__control-btn(aria-label='Previous Slide' tabindex='0' @click='handleSlide("prev")')
+        BaseIcon.block-before-after-slider__icon.block-before-after-slider__icon--prev(name='caret')
+      
+      .block-before-after-slider__slider(role='region' aria-live='polite')
+        .block-before-after-slider__slide(
+          v-for='(slide, i) in props.slides'
+          :key='`before-after-slider-${i}`'
+          :aria-label='`slide ${ i + 1 } of ${ props.slides.length }`'
+          role='group'
+          :class="{ 'block-before-after-slider__slide--current': currIndex === i }"
+          )
+          .block-before-after-slider__slide-wrapper
+            BaseBackground.block-before-after-slider__image(:src='slide.before.src', :webp='slide.before.webp', :alt='slide.before.alt' imageBackground :bgColor='slide.before.loading_mask ? slide.before.loading_mask : null', :aria-hidden=' currIndex === i ? null : true')
+            h4.block-before-after-slider__text Before
+          .block-before-after-slider__slide-wrapper
+            BaseBackground.block-before-after-slider__image(:src='slide.after.src', :webp='slide.after.webp', :alt='slide.after.alt' imageBackground :bgColor='slide.after.loading_mask ? slide.after.loading_mask : null', aria-hidden='true')
+            h4.block-before-after-slider__text After
+      button.block-before-after-slider__control-btn(aria-label='Next Slide' tabindex='0' @click='handleSlide("next")')
+        BaseIcon.block-before-after-slider__icon.block-before-after-slider__icon--next(name='caret')      
