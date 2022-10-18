@@ -104,8 +104,9 @@
   &__control-btn
     @include hover-supported
       background: var(--siSliderTextColor)
-      .block-single-image-slider__icon
+      .block-before-after-slider__icon
         stroke: $white
+
     @include tablet
       margin-top: 1.5rem
     display: flex
@@ -122,8 +123,9 @@
     transition: stroke .2s ease
     width: 1.2rem
     height: 1.2rem
-    stroke: var(--siSliderTextColor)
     stroke-width: .5rem
+    stroke: var(--siSliderTextColor)
+
 
     &--prev
       transform: rotate(90deg)
